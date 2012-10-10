@@ -308,7 +308,7 @@
 
 	
 	
-	html += '<div class="b-popup" style="display: none;"><i class="b-popup__close"></i><div class="b-lection" data-id="id"><div class="b-lection__descr"><h1 class="b-popup__title">Название</h1><span class="b-lection__date">Дата</span><ul><li class="b-lection__video"><div class="b-edit" data-type="video"><a href="#" class="b-icons__video b-lection__link b-lection__link_type_video"><span class="b-edit__label">Видео</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__ppt"><div class="b-edit" data-type="ppt"><a href="#" class="b-icons__ppt b-lection__link b-lection__link_type_ppt"><span class="b-edit__label">Презентация</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__github"><div class="b-edit" data-type="github"><a href="#" class="b-speclink b-lection__link b-lection__link_type_github"><span class="b-edit__label">GitHUB</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__club"><div class="b-edit" data-type="club"><a href="#" class="b-lection__link b-lection__link_type_club"><span class="b-edit__label">Обсуждения в Клубе</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__task"><div class="b-edit" data-type="club"><a href="#" class="b-lection__link b-lection__link_type_task"><span class="b-edit__task">Задание</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__descr"><div class="b-edit" data-type="descr"><a href="#" class="b-lection__link b-lection__link_type_descr"><span class="b-edit__task">Описание</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li></ul></div><div class="b-lector"><img src="pic1.jpg" alt="" class="b-lector__img"/><div class="b-edit" data-type="lector"><a href="#" class="b-lector__name"><span class="b-edit__lectorname">Имя лектора</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></div></div></div>';
+	html += '<div class="b-popup" style="display: none;"><i class="b-popup__close"></i><div class="b-lection" data-id="id"><div class="b-lection__descr"><h1 class="b-popup__title">Название</h1><span class="b-lection__date">Дата</span><ul><li class="b-lection__video"><div class="b-edit" data-type="video"><a href="#" class="b-icons__video b-lection__link b-lection__link_type_video"><span class="b-edit__label">Видео</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__ppt"><div class="b-edit" data-type="ppt"><a href="#" class="b-icons__ppt b-lection__link b-lection__link_type_ppt"><span class="b-edit__label">Презентация</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__github"><div class="b-edit" data-type="github"><a href="#" class="b-speclink b-lection__link b-lection__link_type_github"><span class="b-edit__label">GitHUB</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__club"><div class="b-edit" data-type="club"><a href="#" class="b-lection__link b-lection__link_type_club"><span class="b-edit__label">Обсуждения в Клубе</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__task"><div class="b-edit" data-type="club"><a href="#" class="b-lection__link b-lection__link_type_task"><span class="b-edit__task">Задание</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__descr"><div class="b-edit" data-type="descr"><a href="#" class="b-lection__link b-lection__link_type_descr"><span class="b-edit__task">Описание</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li></ul></div><div class="b-lector"><img src="pic1.jpg" alt="" class="b-lector__img"/><div class="b-edit" data-type="lector"><a href="#" class="b-lector__name"><span class="b-edit__lectorname">Имя лектора</span></a><select size="3" class="b-edit__value" style="display: none;"></select><i class="b-edit__ico"></i></div></div></div></div>';
 	
 
 	
@@ -387,15 +387,22 @@
 		$(".b-edit__ico").live("click", function(){ 
 			var lectionKey = $(this).closest(".b-edit").data("type");
 			var lectionIndex = $(this).closest(".b-lection").data("id");
-			/*if(type === 'lector') {
-				$(".b-edit__ico").prev("span."+type).html("<select size='3' class='b-edit__value b-edit__"+type+"'/></select>");
-				for (lector in lectors) {
-					var currentLector = lectors[lector];
-					$("select").append("<option value='"+lector+"'>"+currentLector.name+"</option>");
+			if(lectionKey === 'lector') {
+				$(this).prev(".b-edit__value").show();
+				for (var lectorIndex in lectors) {
+					var currentLector = lectors[lectorIndex];
+					$(".b-edit__value").append("<option value='"+lectorIndex+"'>"+currentLector.name+"</option>");
+					$(".b-edit__value [value='0']").attr("selected", "selected");
 					$("select").focus();					
 				}
+				$(this).prevAll("a").find("span").attr("style","display: none;");	
 			}
-			else if (type === 'descr'){
+			else {
+				$(this).prev(".b-edit__value").show().attr("value", lections[lectionIndex][lectionKey]);			
+				$(this).prevAll("a").find("span").attr("style","display: none;");					
+				$("input").focus();
+			}
+			/*else if (type === 'descr'){
 				$(".b-edit__ico").prev("span."+type).html("<textarea name='"+type+"' class='b-edit__value b-edit__"+type+"'>"+lections[id][type]+"</textarea>");	
 				$("input").focus();
 			}
@@ -418,9 +425,7 @@
 			}
 			
 			//$(this).closest(".b-edit").attr("style","width:150px; margin: 0 0 0 30px;");*/
-			$(this).prev(".b-edit__value").show().attr("value", lections[lectionIndex][lectionKey]);			
-			$(this).prevAll("a").find("span").attr("style","display: none;");					
-			$("input").focus();
+			
 		});
 		
 		$(".b-edit__value").live("focusout", function() {	
@@ -431,8 +436,13 @@
 			lections[lectionIndex][lectionKey] = value;
 			localStorage.lections = JSON.stringify(lections, "", 4); 
 			lections = JSON.parse(localStorage.lections);
-			$(".b-edit__value").hide();
-			$(this).prev(".b-lection__link").find("span").show();
+			$(this).hide();
+			if(lectionKey === 'lector') {
+				$(".b-edit__lectorname").show();			
+			}
+			else {
+				$(this).prev(".b-lection__link").find("span").show();
+			}
 		});
 			
 			/*var date = Date.parse($(".b-lection__date").html());				
