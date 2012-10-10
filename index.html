@@ -1,0 +1,635 @@
+<!doctype html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Распсиание лекций Школы Разработки Интерфейсов</title>
+<meta name="description" content="Распиcание лекций Школы Разработки Интерфейсов">
+<meta name="keywords" content="распиcание, ШРИ">
+<meta name="author" content="Лукьянчук С.В.">
+
+<meta name="viewport" content="width=device-width">
+
+<script src="js/jquery.js"></script>
+
+<script src="js/date-ru-RU.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+<script>
+
+	var months = ['январь','февраль','март','апрелья','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
+	var weekDays = ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'];
+	var weekDaysShrt = ['вс','пн','вт','ср','чт','пт','сб'];
+
+	var lectors = [
+		{
+		"name" : "Михаил Трошев",
+		"photo" : "",
+		"descr" : "",
+		"link" : ""
+		},
+		{
+		"name" : "Сергей Бережной",
+		"photo" : "",
+		"descr" : "",
+		"link" : ""
+		},
+		{
+		"name" : "Виктор Ашик",
+		"photo" : "",
+		"descr" : "",
+		"link" : "123"
+		},
+		{
+		"name" : "Вячеслав Олиянчук",
+		"photo" : "",
+		"descr" : "",
+		"link" : ""
+		},
+		{
+		"name" : "Георгий Мостоловица",
+		"photo" : "",
+		"descr" : "",
+		"link" : ""
+		},
+		{
+		"name" : "Сергей Сергеев",
+		"photo" : "",
+		"descr" : "",
+		"link" : ""
+		},
+		{
+		"name" : "Марина Широчкина",
+		"photo" : "",
+		"descr" : "",
+		"link" : ""
+		},
+		{
+		"name" : "Павел Пушкарев",
+		"photo" : "",
+		"descr" : "",
+		"link" : ""
+		},
+		{
+		"name" : "Алексей Бережной",
+		"photo" : "",
+		"descr" : "",
+		"link" : ""
+		},
+		{
+		"name" : "Сергей Пузанков",
+		"photo" : "",
+		"descr" : "",
+		"link" : ""
+		},
+		{
+		"name" : "Роман Комаров",
+		"photo" : "",
+		"descr" : "",
+		"link" : ""
+		},
+		{
+		"name" : "Егор Львовский",
+		"photo" : "",
+		"descr" : "",
+		"link" : ""
+		},
+		{
+		"name" : "Тарас Иващенко",
+		"photo" : "",
+		"descr" : "",
+		"link" : ""
+		},
+		{
+		"name" : "Алексей Воинов",
+		"photo" : "",
+		"descr" : "",
+		"link" : ""
+		},
+		{
+		"name" : "Михаил Давыдов",
+		"photo" : "",
+		"descr" : "",
+		"link" : ""
+		}		
+	];
+	localStorage.lectors = JSON.stringify(lectors, "", 4); 
+	//alert (localStorage.lectors);
+	var lections = 
+		[	
+			{
+				"time" : "12:00",
+				"name" : "Общий цикл разработки",
+				"lector" : "1",
+				"video" : "http://ya.ru",
+				"ppt" : "",
+				"task" : "1",
+				"github" : "1",
+				"club" : "1",
+				"descr" : "1"
+			},
+			{
+				"time" : "13:00",
+				"name" : "Task Tracker",
+				"lector" : "2",
+				"video" : "1",
+				"ppt" : "1",
+				"task" : "",
+				"github" : "1",
+				"club" : "1",
+				"descr" : "1"
+			}
+		];		
+		
+	localStorage.lections = JSON.stringify(lections, "", 4); 
+
+		
+	localStorage.weeksDescriptions = JSON.stringify([
+        {
+            "name" : "1 неделя",
+            "meta" : ["техологии", "инструменты"]
+        },
+        {
+            "name" : "2 неделя",
+            "meta" : ["инстурменты", "инструменты"]
+        }
+    ], "", 4);
+
+	var weeks = [
+		{
+		"18.09.2012" : [1],	
+		"19.09.2012" : [0]		
+		}
+	]
+		
+	localStorage.weeks = JSON.stringify(weeks, "", 4);
+
+    var lections = JSON.parse(localStorage.lections);
+    var weeks = JSON.parse(localStorage.weeks);
+    var lectors = JSON.parse(localStorage.lectors);
+    var weeksDescriptions = JSON.parse(localStorage.weeksDescriptions);
+
+    var GetTextDate = function (day, format) {
+        var date = Date.parse(day);
+
+        switch (format) {
+            case "weeksDate":
+                var dayNumber = date.getDate();
+                var monthNumber = date.getMonth()+1;
+                if (monthNumber < 10) {
+                    monthNumber = '0'+monthNumber;
+                }
+                var dayWeekText = weekDaysShrt[date.getDay()];
+                return dayNumber+'.'+monthNumber+' '+dayWeekText;
+				
+			case "lectionsDate":
+				var dayNumber = date.getDate();
+                var monthText = months[date.getMonth()+1];                
+                var dayWeekText = weekDays[date.getDay()];
+				return '<span class="b-lections-date__day">'+dayWeekText+'</span><span class="b-lections-date__month">'+monthText+'</span><span class="b-lections-date__date">'+dayNumber+'</span>';
+				
+			case "lectionDate":
+                var dayNumber = date.getDate();
+                var monthNumber = date.getMonth()+1;
+                if (monthNumber < 10) {
+                    monthNumber = '0'+monthNumber;
+                }
+                var dayWeekText = weekDays[date.getDay()];
+                return dayNumber+'.'+monthNumber+' '+dayWeekText;
+			
+        }
+
+        return '';
+    }
+
+    function GetWeeksHtml() {
+        var html = '<div class="b-nav"><ul class="b-nav__list">';
+        var weekIndex;
+        for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
+            var week = weeks[weekIndex];
+            var weekDescription = weeksDescriptions[weekIndex];
+
+            html += '<li class="b-nav__item"><a href="#" class="b-nav__link">'+weekDescription.name
+                    +'</a><div class="b-week"><ul class="b-week__list">';
+
+            var day;
+            for (day in week) {
+                if (!week.hasOwnProperty(day)) {
+                    continue;
+                }
+
+                var lectionIndex;
+                var dayLections = week[day];
+                for(lectionIndex in dayLections) {
+                    if (!dayLections.hasOwnProperty(lectionIndex)) {
+                        continue;
+                    }
+
+                    var lectionId = dayLections[lectionIndex];
+                    html += '<li class="b-week__item"><a href="#" class="b-week__link b-open__lection" data-id='+lectionId+'><span class="b-week__date">'+GetTextDate(day, 'weeksDate')+'</span> '+lections[lectionId].name+'</a></li>';
+
+                }
+            }
+            html += '</ul></div></li>';
+
+        }
+        html += '</ul></div>';
+        return html;
+    }
+	
+	function GetLectionsHtml(){
+		html += '<div class="b-timetable">';	
+		var weekIndex;
+		for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
+			var week = weeks[weekIndex];
+			var weekDescription = weeksDescriptions[weekIndex];
+				
+			html += '<h1>'+weekDescription.name+'</h1>';	
+				
+			for (var metaIndex in weekDescription.meta) {					
+				html += '<span class="b-timetable__meta"> '+weekDescription.meta[metaIndex]+'</span>';
+			}
+				
+			html += '<ul class="b-lections">';
+			
+			var day;
+			for (day in week) {
+				if (!week.hasOwnProperty(day)) {
+					continue;
+				}
+				
+				html += '<li class="b-lections__day">';
+				
+				var lectionIndex;
+				var dayLections = week[day];
+				for(lectionIndex in dayLections) {
+					if (!dayLections.hasOwnProperty(lectionIndex)) {
+						continue;
+					}
+
+					var lectionId = dayLections[lectionIndex];
+						
+					html += '<div class="b-lections__lection"><a href="#" class="b-lections__link b-open__lection" data-id='+lectionId+'><span class="b-lections__time">'+lections[lectionId].time+'</span> '+lections[lectionId].name+'</a><div class="b-icons"><a class="b-icons__link b-icons__video ';
+						
+					if(lections[lectionId].video != '') {
+						html += 'b-icons__type_on" href="'+lections[lectionId].video;					
+					}					
+						
+					html += '"></a><a class="b-icons__link b-icons__ppt ';
+						
+					if(lections[lectionId].ppt != '') {
+						html += 'b-icons__type_on" href="'+lections[lectionId].ppt;						
+					}
+						
+					html += '"></a><a class="b-icons__link b-icons__task ';
+					
+					if(lections[lectionId].task != '') {
+						html += 'b-icons__type_on" href="'+lections[lectionId].task;				
+					}
+						
+					html += '"></a></div></div>';	
+					
+				}
+				
+				html += '<div class="b-lections-date">'+GetTextDate(day, 'lectionsDate')+'</div><span class="b-lections__meta"></span></li>';	
+			
+			}
+			html += '</ul>';
+		}		
+		html += '</div>';
+		return html;
+	}
+	
+	
+    var html = '';
+    html += GetWeeksHtml();
+	html += GetLectionsHtml();
+
+	
+	
+	html += '<div class="b-popup" style="display: none;"><i class="b-popup__close"></i><div class="b-lection" data-id="id"><div class="b-lection__descr"><h1 class="b-popup__title">Название</h1><span class="b-lection__date">Дата</span><ul><li class="b-lection__video"><div class="b-edit" data-type="video"><a href="#" class="b-icons__video b-lection__link b-lection__link_type_video"><span class="b-edit__label">Видео</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__ppt"><div class="b-edit" data-type="ppt"><a href="#" class="b-icons__ppt b-lection__link b-lection__link_type_ppt"><span class="b-edit__label">Презентация</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__github"><div class="b-edit" data-type="github"><a href="#" class="b-speclink b-lection__link b-lection__link_type_github"><span class="b-edit__label">GitHUB</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__club"><div class="b-edit" data-type="club"><a href="#" class="b-lection__link b-lection__link_type_club"><span class="b-edit__label">Обсуждения в Клубе</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__task"><div class="b-edit" data-type="club"><a href="#" class="b-lection__link b-lection__link_type_task"><span class="b-edit__task">Задание</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__descr"><div class="b-edit" data-type="descr"><a href="#" class="b-lection__link b-lection__link_type_descr"><span class="b-edit__task">Описание</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li></ul></div><div class="b-lector"><img src="pic1.jpg" alt="" class="b-lector__img"/><div class="b-edit" data-type="lector"><a href="#" class="b-lector__name"><span class="b-edit__lectorname">Имя лектора</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></div></div></div>';
+	
+
+	
+	
+	$(document).ready(function(){
+		$('body').html(html);	
+		$('.b-open__lection').click(function(){
+			var id = $(this).data('id');			
+			var viewLection = lections[id];
+			
+			var dateLection;
+			
+			var weekIndex;
+			for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
+				var week = weeks[weekIndex];
+				var day;
+				for (day in week) {
+					if (!week.hasOwnProperty(day)) {
+					continue;
+					}
+					var lectionIndex;
+					var dayLections = week[day];
+					for(lectionIndex in dayLections) {
+						if (!dayLections.hasOwnProperty(lectionIndex)) {
+							continue;
+						}
+						if(parseInt(dayLections[lectionIndex]) === parseInt(id)) {
+							dateLection = day;
+							break;
+						}
+					}
+				}
+			}
+			
+				
+			
+			/*var date = Date.parse(dateDay);
+			var num = date.getDate();
+			var month = months[date.getMonth()];			
+			var dayWeek = weekDays[date.getDay()];
+			date = month+' '+num+' '+dayWeek+', '+viewLection.time;	*/
+
+
+			$(".b-lection").attr('data-id', id);
+			
+			$(".b-popup__title").text(viewLection.name);
+			$(".b-lection__date").text(GetTextDate(day, 'lectionDate')+", "+viewLection.time);
+			
+			
+			if(viewLection.video != '') {
+				$(".b-lection__link_type_video").attr({"href": viewLection.video, "style": "background-position: 0 0;"});		
+			}
+			
+			if(viewLection.ppt != '') {
+				$(".b-lection__link_type_ppt").attr({"href": viewLection.ppt, "style": "background-position: 0 0;"});		
+			}
+			
+			if(viewLection.github != '') {
+				$(".b-lection__link_type_github").attr("href", viewLection.github);		
+			}
+			
+			if(viewLection.club != '') {
+				$(".b-lection__link_type_club").attr("href", viewLection.club);		
+			}
+						
+			if(viewLection.lector != '') {
+				$(".b-edit__lectorname").text(lectors[viewLection.lector].name);
+				if(lectors[viewLection.lector].link != ''){
+					$(".b-lector__name").attr("href", lectors[viewLection.lector].link);		
+				}
+			}
+			
+			$(".b-popup").show();
+		});
+		
+		$(".b-edit__ico").live("click", function(){ 
+			var lectionKey = $(this).closest(".b-edit").data("type");
+			var lectionIndex = $(this).closest(".b-lection").data("id");
+			/*if(type === 'lector') {
+				$(".b-edit__ico").prev("span."+type).html("<select size='3' class='b-edit__value b-edit__"+type+"'/></select>");
+				for (lector in lectors) {
+					var currentLector = lectors[lector];
+					$("select").append("<option value='"+lector+"'>"+currentLector.name+"</option>");
+					$("select").focus();					
+				}
+			}
+			else if (type === 'descr'){
+				$(".b-edit__ico").prev("span."+type).html("<textarea name='"+type+"' class='b-edit__value b-edit__"+type+"'>"+lections[id][type]+"</textarea>");	
+				$("input").focus();
+			}
+			else if (type === 'date'){
+				var date = Date.parse($(".b-lection__date").html());				
+				var num = date.getDate();
+				var month = date.getMonth();	
+				if(month < 10) {
+								month = '0'+month;
+							}				
+				var year = date.getFullYear();
+				date = num+'.'+month+'.'+year;
+				$(".b-edit__ico").prev("span."+type).html("<input type='text' class='b-edit__value b-edit__"+type+"' value='"+date+"' />");					
+				$("input").focus();
+			}
+			else{
+				$(this).prev(".b-edit__value").attr("style","display: inline-block;");
+				$(this).prevAll("a").find(".b-edit__label").attr("style","display: none;");					
+				$("input").focus();
+			}
+			
+			//$(this).closest(".b-edit").attr("style","width:150px; margin: 0 0 0 30px;");*/
+			$(this).prev(".b-edit__value").show().attr("value", lections[lectionIndex][lectionKey]);			
+			$(this).prevAll("a").find("span").attr("style","display: none;");					
+			$("input").focus();
+		});
+		
+		$(".b-edit__value").live("focusout", function() {	
+			var value = $(this).val();
+			var lectionKey = $(this).closest('.b-edit').data('type');
+			var lectionIndex = $(this).closest('.b-lection').data('id');
+			
+			lections[lectionIndex][lectionKey] = value;
+			localStorage.lections = JSON.stringify(lections, "", 4); 
+			lections = JSON.parse(localStorage.lections);
+			$(".b-edit__value").hide();
+			$(this).prev(".b-lection__link").find("span").show();
+		});
+			
+			/*var date = Date.parse($(".b-lection__date").html());				
+			var num = date.getDate();
+			var month = date.getMonth();	
+			if(month < 10) {
+				month = '0'+month;
+			}				
+			var year = date.getFullYear();
+			date = num+'.'+month+'.'+year;
+			
+			if (type === 'date') {
+				for(week in weeks) {
+					for(day in weeks[week]) {
+						if (day === date) {	
+							var currentDay = weeks[week][day];
+							for (var currentLection in currentDay){
+								if(parseInt(currentLection) === parseInt(id)) {
+									break;
+								}
+								else {
+									currentDay.push(id);
+									localStorage.weeks = JSON.stringify(weeks, "", 4); 
+									weeks = JSON.parse(localStorage.weeks);
+								}
+							}
+						}
+					}
+				}
+			}
+			else {
+			lections[id][type] = value;
+			localStorage.lections = JSON.stringify(lections, "", 4); 
+			lections = JSON.parse(localStorage.lections);}
+			$(".b-edit__value").hide();
+			$(this).closest(".b-edit").attr("style","margin: 0;");
+		});
+
+		*/
+		$(".b-popup__close").live("click", function(){ 
+			 $(".b-popup").hide();
+		});
+	});
+	
+
+	
+</script>
+
+	
+</head>
+
+
+
+<body>
+ <!--[if lt IE 8]><p class=chromeframe>Ваш браузер <em>устарел!</em> <a href="http://browsers.yandex.ru/">Обновите свой браузер</a> или <a href="http://www.google.com/chromeframe/?redirect=true">установите Google Chrome Frame</a> чтобы продолжить работу с сайтом.</p><![endif]-->
+
+ 
+
+ <!--
+
+<div class="b-nav">
+	<ul class="b-nav__list">
+		<li class="b-nav__item"><a href="#" class="b-nav__link">1 неделя</a>
+			<div class="b-week">
+				<ul class="b-week__list">
+					<li class="b-week__item"><a href="#" class="b-week__link"><span class="b-week__date">18.09 вт</span> Командная строка Unix</a></li>
+					<li class="b-week__item"><a href="#" class="b-week__link"><span class="b-week__date">18.09 вт</span> Командная строка Unix</a></li>
+					<li class="b-week__item"><a href="#" class="b-week__link"><span class="b-week__date">18.09 вт</span> Командная строка Unix</a></li>
+					<li class="b-week__item"><a href="#" class="b-week__link"><span class="b-week__date">18.09 вт</span> Командная строка Unix</a></li>
+					<li class="b-week__item"><a href="#" class="b-week__link"><span class="b-week__date">18.09 вт</span> Командная строка Unix</a></li>
+					<li class="b-week__item"><a href="#" class="b-week__link"><span class="b-week__date">18.09 вт</span> Командная строка Unix</a></li>
+				</ul>
+			</div>
+		</li>
+		<li class="b-nav__item"><a href="#" class="b-nav__link">2 неделя</a></li>
+		<li class="b-nav__item"><a href="#" class="b-nav__link">3 неделя</a></li>
+		<li class="b-nav__item b-nav__item_pos_last"><a href="#" class="b-nav__link">4 неделя</a></li>
+	</ul>
+</div>
+
+<div class="b-timetable">
+	<h1>1 неделя</h1> <span class="b-timetable__meta">инструменты</span> <span class="b-timetable__meta">технологии</span>
+	<div class="b-popup">			
+		<i class="b-popup__close"></i>
+		<div class="b-lection">
+
+			<div class="b-lection__descr">
+				<h1 class="b-popup__title">Командная строка Unix</h1>
+				<span  class="b-lection__date">18 сентября, вторник 19-00</span>
+				<ul class="b-speclinks">
+					<li class="b-speclinks__item"><a href="#" class="b-speclinks__link b-icons__video b-icons__video_type_off"><span>Видео</span></a></li><div class="b-edit" data-type="name"><span></span><i class="b-edit__ico"></i></div>
+					<li class="b-speclinks__item"><a href="#" class="b-speclinks__link b-icons__ppt"><span>Презентация</span></a></li>
+					<li class="b-speclinks__item"><a href="#" class="b-speclinks__link b-icons__task"><span>Задание</span></a></li>
+					<li class="b-speclinks__item"><a href="#" class="b-speclinks__link"><span>GitHUB</span></a></li>
+					<li class="b-speclinks__item"><a href="#" class="b-speclinks__link"><span>Обсуждения в клубе</span></a></li>
+				</ul>
+				<p>Тезисы, описание лекции</p>
+			</div>
+			<div class="b-lection__author">
+				<img src="pic1.jpg" alt="" />
+				<a href="#">Виктор Ашик</a>
+			</div>
+		</div>
+	</div>
+	<ul class="b-lections">
+		<li class="b-lections__day">
+			<div class="b-lections__lection">
+				<a href="#" class="b-lections__link"><span class="b-lections__time">19-00</span> Командная строка Unix</a>
+				<div class="b-icons">
+					<a class="b-icons__link b-icons__video" href="#"></a>
+					<a class="b-icons__link b-icons__ppt" href="#"></a>
+					<a class="b-icons__link b-icons__task b-icons__task_type_off" href="#"></a>
+				</div>
+			</div>
+			<div class="b-lections__lection">
+				<a href="#" class="b-lections__link"><span class="b-lections__time">20-00</span> Редакторы кода</a>
+				<div class="b-icons">
+					<a class="b-icons__link b-icons__video b-icons__video_type_off" href="#"></a>
+					<a class="b-icons__link b-icons__ppt" href="#"></a>
+					<a class="b-icons__link b-icons__task b-icons__task_type_off" href="#"></a>
+				</div>
+			</div>
+			<div class="b-lections-date">
+				<span class="b-lections-date__day">вторник</span>
+				<span class="b-lections-date__month">октябрь</span>
+				<span class="b-lections-date__date">18</span>
+			</div>
+			<span class="b-lections__meta"></span>
+		</li>
+		
+		<li class="b-lections__day">
+			<div class="b-lections__lection">
+				<a href="#" class="b-lections__link"><span class="b-lections__time">19-00</span> Командная строка Unix</a>
+				<div class="b-icons">
+					<a class="b-icons__link b-icons__video" href="#"></a>
+					<a class="b-icons__link b-icons__ppt" href="#"></a>
+					<a class="b-icons__link b-icons__task b-icons__task_type_off" href="#"></a>
+				</div>
+			</div>
+			<div class="b-lections__lection">
+				<a href="#" class="b-lections__link"><span class="b-lections__time">20-00</span> Редакторы кода</a>
+				<div class="b-icons">
+					<a class="b-icons__link b-icons__video b-icons__video_type_off" href="#"></a>
+					<a class="b-icons__link b-icons__ppt" href="#"></a>
+					<a class="b-icons__link b-icons__task b-icons__task_type_off" href="#"></a>
+				</div>
+			</div>
+			<div class="b-lections-date">
+				<span class="b-lections-date__day">вторник</span>
+				<span class="b-lections-date__month">октябрь</span>
+				<span class="b-lections-date__date">18</span>
+			</div>
+			<span class="b-lections__meta"></span>
+		</li>
+		
+		<li class="b-lections__day">
+			<div class="b-lections__lection">
+				<a href="#" class="b-lections__link"><span class="b-lections__time">19-00</span> Командная строка Unix</a>
+				<div class="b-icons">
+					<a class="b-icons__link b-icons__video" href="#"></a>
+					<a class="b-icons__link b-icons__ppt" href="#"></a>
+					<a class="b-icons__link b-icons__task b-icons__task_type_off" href="#"></a>
+				</div>
+			</div>
+			<div class="b-lections__lection">
+				<a href="#" class="b-lections__link"><span class="b-lections__time">20-00</span> Редакторы кода</a>
+				<div class="b-icons">
+					<a class="b-icons__link b-icons__video b-icons__video_type_off" href="#"></a>
+					<a class="b-icons__link b-icons__ppt" href="#"></a>
+					<a class="b-icons__link b-icons__task b-icons__task_type_off" href="#"></a>
+				</div>
+			</div>
+			<div class="b-lections-date">
+				<span class="b-lections-date__day">вторник</span>
+				<span class="b-lections-date__month">октябрь</span>
+				<span class="b-lections-date__date">18</span>
+			</div>
+			<span class="b-lections__meta">факультативно</span>
+		</li>
+	</ul>
+</div>-->
+
+<script>
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
