@@ -265,8 +265,8 @@ h1 {
 	*zoom:1;
 	*display:inline;
 	vertical-align: top;
-	width: 22px;
-	height: 21px;
+	width: 24px;
+	height: 24px;
 
 }
 
@@ -277,7 +277,7 @@ h1 {
 
 
 .b-icons__video {
-	background: url(b-icons__video.png) 0 -22px no-repeat;
+	background: url(b-icons__video.png) 0 -25px no-repeat;
 }
 
 .b-popup .b-icons__video {
@@ -285,11 +285,11 @@ h1 {
 }
 
 .b-icons__ppt {
-	background: url(b-icons__ppt.png) 0 -22px no-repeat;
+	background: url(b-icons__ppt.png) 0 -25px no-repeat;
 }
 
 .b-icons__task {
-	background: url(b-icons__task.png) 0 -22px no-repeat;
+	background: url(b-icons__task.png) 0 -25px no-repeat;
 }
 
 .b-icons__type_on { 
