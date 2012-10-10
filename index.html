@@ -402,6 +402,7 @@
 				$(this).prevAll("a").find("span").attr("style","display: none;");					
 				$("input").focus();
 			}
+			$(this).hide();
 			/*else if (type === 'descr'){
 				$(".b-edit__ico").prev("span."+type).html("<textarea name='"+type+"' class='b-edit__value b-edit__"+type+"'>"+lections[id][type]+"</textarea>");	
 				$("input").focus();
@@ -443,6 +444,7 @@
 			else {
 				$(this).prev(".b-lection__link").find("span").show();
 			}
+			$(this).next(".b-edit__ico").show();
 		});
 			
 			/*var date = Date.parse($(".b-lection__date").html());				
