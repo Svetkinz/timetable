@@ -2,7 +2,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Распсиание лекций Школы Разработки Интерфейсов</title>
+<title>Распиcание лекций Школы Разработки Интерфейсов</title>
 <meta name="description" content="Распиcание лекций Школы Разработки Интерфейсов">
 <meta name="keywords" content="распиcание, ШРИ">
 <meta name="author" content="Лукьянчук С.В.">
@@ -19,7 +19,7 @@
 
 <script>
 
-	var months = ['январь','февраль','март','апрелья','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
+	var months = ['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
 	var weekDays = ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'];
 	var weekDaysShrt = ['вс','пн','вт','ср','чт','пт','сб'];
 
@@ -145,8 +145,7 @@
 		
 	localStorage.lections = JSON.stringify(lections, "", 4); 
 
-		
-	localStorage.weeksDescriptions = JSON.stringify([
+	var weeksDescriptions = [
         {
             "name" : "1 неделя",
             "meta" : ["техологии", "инструменты"]
@@ -155,8 +154,10 @@
             "name" : "2 неделя",
             "meta" : ["инстурменты", "инструменты"]
         }
-    ], "", 4);
-
+    ];
+	
+	localStorage.weeksDescriptions = JSON.stringify(weeksDescriptions, "", 4);
+	
 	var weeks = [
 		{
 		"18.09.2012" : [1],	
@@ -240,7 +241,7 @@
     }
 	
 	function GetLectionsHtml(){
-		html += '<div class="b-timetable">';	
+		var html = '<div class="b-timetable">';
 		var weekIndex;
 		for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
 			var week = weeks[weekIndex];
@@ -309,9 +310,11 @@
     html += GetWeeksHtml();
 	html += GetLectionsHtml();
 
+    //console.log(html);
+
 	
 	
-	html += '<div class="b-popup" style="display: none;"><i class="b-popup__close"></i><div class="b-lection" data-id="id"><div class="b-lection__descr"><h1 class="b-popup__title">Название</h1><span class="b-lection__date">Дата</span><ul><li class="b-lection__video"><div class="b-edit" data-type="video"><a href="#" class="b-icons__video b-lection__link b-lection__link_type_video"><span class="b-edit__label">Видео</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__ppt"><div class="b-edit" data-type="ppt"><a href="#" class="b-icons__ppt b-lection__link b-lection__link_type_ppt"><span class="b-edit__label">Презентация</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__github"><div class="b-edit" data-type="github"><a href="#" class="b-speclink b-lection__link b-lection__link_type_github"><span class="b-edit__label">GitHUB</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__club"><div class="b-edit" data-type="club"><a href="#" class="b-lection__link b-lection__link_type_club"><span class="b-edit__label">Обсуждения в Клубе</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__task"><div class="b-edit" data-type="club"><a href="#" class="b-lection__link b-lection__link_type_task"><span class="b-edit__task">Задание</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__descr"><div class="b-edit" data-type="descr"><a href="#" class="b-lection__link b-lection__link_type_descr"><span class="b-edit__task">Описание</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li></ul></div><div class="b-lector"><img src="pic1.jpg" alt="" class="b-lector__img"/><div class="b-edit" data-type="lector"><a href="#" class="b-lector__name"><span class="b-edit__lectorname">Имя лектора</span></a><select size="3" class="b-edit__value" style="display: none;"></select><i class="b-edit__ico"></i></div></div></div></div>';
+	html += '<div class="b-popup" style="display: none;"><i class="b-popup__close"></i><div class="b-lection" data-id="id"><div class="b-lection__descr"><h1 class="b-popup__title">Название</h1><span class="b-lection__date">Дата</span><ul><li class="b-lection__video"><div class="b-edit" data-type="video"><a href="#" class="b-icons__video b-lection__link b-lection__link_type_video"><span class="b-edit__label">Видео</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__ppt"><div class="b-edit" data-type="ppt"><a href="#" class="b-icons__ppt b-lection__link b-lection__link_type_ppt"><span class="b-edit__label">Презентация</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__github"><div class="b-edit" data-type="github"><a href="#" class="b-icons__github b-lection__link b-lection__link_type_github"><span class="b-edit__label">GitHUB</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__club"><div class="b-edit" data-type="club"><a href="#" class="b-icons__club b-lection__link b-lection__link_type_club"><span class="b-edit__label">Обсуждения в Клубе</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__task"><div class="b-edit" data-type="club"><a href="#" class="b-icons__task b-lection__link b-lection__link_type_task"><span class="b-edit__task">Задание</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__descr"><div class="b-edit" data-type="descr"><a href="#" class="b-icons__descr b-lection__link b-lection__link_type_descr"><span class="b-edit__task">Описание</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li></ul></div><div class="b-lector"><img src="pic1.jpg" alt="" class="b-lector__img"/><div class="b-edit" data-type="lector"><a href="#" class="b-lector__name"><span class="b-edit__lectorname">Имя лектора</span></a><select size="3" class="b-edit__value" style="display: none;"></select><i class="b-edit__ico"></i></div></div></div></div>';
 	
 
 	
@@ -355,7 +358,7 @@
 			date = month+' '+num+' '+dayWeek+', '+viewLection.time;	*/
 
 
-			$(".b-lection").attr('data-id', id);
+			$(".b-lection").data('id', id);
 			
 			$(".b-popup__title").text(viewLection.name);
 			$(".b-lection__date").text(GetTextDate(day, 'lectionDate')+", "+viewLection.time);
@@ -389,7 +392,7 @@
 		
 		$(".b-edit__ico").live("click", function(){ 
 			var lectionKey = $(this).closest(".b-edit").data("type");
-			var lectionIndex = $(this).closest(".b-lection").data("id");
+			var lectionId = $(this).closest(".b-lection").data("id");
 			if(lectionKey === 'lector') {
 				$(this).prev(".b-edit__value").show();
 				for (var lectorIndex in lectors) {
@@ -401,7 +404,8 @@
 				$(this).prevAll("a").find("span").attr("style","display: none;");	
 			}
 			else {
-				$(this).prev(".b-edit__value").show().attr("value", lections[lectionIndex][lectionKey]);			
+                console.log(lectionId);
+				$(this).prev(".b-edit__value").attr("value", lections[lectionId][lectionKey]).show();			
 				$(this).prevAll("a").find("span").attr("style","display: none;");					
 				$("input").focus();
 			}

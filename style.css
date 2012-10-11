@@ -296,7 +296,19 @@ h1 {
 	background: url(b-icons__task.png) 0 -25px no-repeat;
 }
 
-.b-icons__type_on { 
+.b-icons__github {
+	background: url(b-icons__github.png) 0 -25px no-repeat;
+}
+
+.b-icons__descr{
+	background: url(b-icons__descr.png) 0 -25px no-repeat;
+}
+
+.b-icons__club{
+	background: url(b-icons__club.png) 0 -25px no-repeat;
+}
+
+.b-icons__type_on{
 	background-position: 0 0;
 }
 
