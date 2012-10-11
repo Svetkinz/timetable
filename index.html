@@ -15,6 +15,7 @@
 
 
 <link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" media="print" href="print.css" />
 
 <script>
 
@@ -22,7 +23,7 @@
 	var weekDays = ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'];
 	var weekDaysShrt = ['вс','пн','вт','ср','чт','пт','сб'];
 
-	/*var lectors = [
+	var lectors = [
 		{
 		"name" : "Михаил Трошев",
 		"photo" : "",
@@ -159,11 +160,11 @@
 	var weeks = [
 		{
 		"18.09.2012" : [1],	
-		"19.09.2012" : [0]		
+		"19.05.2012" : [0]		
 		}
 	]
 		
-	localStorage.weeks = JSON.stringify(weeks, "", 4);*/
+	localStorage.weeks = JSON.stringify(weeks, "", 4);
 
     var lections = JSON.parse(localStorage.lections);
     var weeks = JSON.parse(localStorage.weeks);
@@ -260,6 +261,7 @@
 				}
 				
 				html += '<li class="b-lections__day">';
+				html += '<div class="b-lections-date">'+GetTextDate(day, 'lectionsDate')+'</div><span class="b-lections__meta"></span>';
 				
 				var lectionIndex;
 				var dayLections = week[day];
@@ -269,8 +271,9 @@
 					}
 
 					var lectionId = dayLections[lectionIndex];
+					var lectorId = lections[lectionId].lector;
 						
-					html += '<div class="b-lections__lection"><a href="#" class="b-lections__link b-open__lection" data-id='+lectionId+'><span class="b-lections__time">'+lections[lectionId].time+'</span> '+lections[lectionId].name+'</a><div class="b-icons"><a class="b-icons__link b-icons__video ';
+					html += '<div class="b-lections__lection"><a href="#" class="b-lections__link b-open__lection" data-id='+lectionId+'><span class="b-lections__time">'+lections[lectionId].time+'</span> '+lections[lectionId].name+' <span class="b-lections__lector">('+lectors[lectorId].name+')</span></a><div class="b-icons"><a class="b-icons__link b-icons__video ';
 						
 					if(lections[lectionId].video != '') {
 						html += 'b-icons__type_on" href="'+lections[lectionId].video;					
@@ -288,11 +291,11 @@
 						html += 'b-icons__type_on" href="'+lections[lectionId].task;				
 					}
 						
-					html += '"></a></div></div>';	
-					
+					html += '"></a></div></div>';
+												
 				}
 				
-				html += '<div class="b-lections-date">'+GetTextDate(day, 'lectionsDate')+'</div><span class="b-lections__meta"></span></li>';	
+				html += '</li>';	
 			
 			}
 			html += '</ul>';

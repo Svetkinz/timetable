@@ -255,6 +255,10 @@ h1 {
 	color: #4D5462;
 }
 
+.b-lections__lector {
+	display: none;
+}
+
 .b-icons {
 	margin: 0 0 8px 52px;
 }
@@ -455,7 +459,6 @@ ul li {
 	width: 150px;
 	color: #333;
 }
-
 
 
 
