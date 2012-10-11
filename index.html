@@ -330,7 +330,7 @@
 			var weekIndex;
 			for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
 				var week = weeks[weekIndex];
-				var day;
+				var day; 
 				for (day in week) {
 					if (!week.hasOwnProperty(day)) {
 					continue;
@@ -342,6 +342,7 @@
 							continue;
 						}
 						if(parseInt(dayLections[lectionIndex]) === parseInt(id)) {
+							
 							dateLection = day;
 							break;
 						}
@@ -349,19 +350,11 @@
 				}
 			}
 			
-				
-			
-			/*var date = Date.parse(dateDay);
-			var num = date.getDate();
-			var month = months[date.getMonth()];			
-			var dayWeek = weekDays[date.getDay()];
-			date = month+' '+num+' '+dayWeek+', '+viewLection.time;	*/
-
-
+	
 			$(".b-lection").data('id', id);
 			
 			$(".b-popup__title").text(viewLection.name);
-			$(".b-lection__date").text(GetTextDate(day, 'lectionDate')+", "+viewLection.time);
+			$(".b-lection__date").text(GetTextDate(dateLection, 'lectionDate')+", "+viewLection.time);
 			
 			
 			if(viewLection.video != '') {
