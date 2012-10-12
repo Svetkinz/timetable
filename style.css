@@ -178,17 +178,14 @@ h3 {
 	color: #6F7683;
 	font-size: 12px;
 	padding: 0 12px 0 0;
+	float: left;
+	height: 21px;
 }
 
 h1 {
 	color: #3FA9F5;
 	font-size: 18px;
 	font-weight: bold;
-	display:inline-block;
-	_overflow:hidden;
-	*zoom:1;
-	*display:inline;
-	vertical-align: middle;
 	margin: 0 15px 0 0;
 }
 
@@ -203,6 +200,15 @@ h1 {
 .b-timetable__meta {
 	font-size: 12px;
 	color: #B8BFC6;
+}
+
+.b-timetable__weekname {
+	display:inline-block;
+	_overflow:hidden;
+	*zoom:1;
+	*display:inline;
+	vertical-align: middle;
+	
 }
 
 .b-lections {
@@ -237,7 +243,7 @@ h1 {
 	text-shadow: -1px -1px 1px #fff;
 	display: block;
 	width: 264px;
-	height: 22px;
+	line-height: 18px;
 	overflow: hidden;
 }
 
@@ -249,6 +255,8 @@ h1 {
 	text-shadow: none;
 	font-size: 13px;
 	padding: 0 18px 0 0;
+	float: left;
+	height: 20px;
 }
 
 .b-lections__link:hover .b-lections__time {
@@ -384,12 +392,17 @@ h1 {
 	color: #fff;
 }
 
-.b-popup__title {
+.b-lection__name {
 	color: #fff;
 	text-shadow: -1px -1px 1px #000;
 	font-weight: normal;
 	font-size: 22px;
-	display: block;
+	display:inline-block;
+	_overflow:hidden;
+	*zoom:1;
+	*display:inline;
+	vertical-align: middle;
+	
 }
 
 .b-lection__descr {
@@ -444,7 +457,10 @@ ul li {
 	*display:inline;
 	vertical-align: top;
 	width: 110px;
-	text-align: center;
+}
+
+.b-lector__name {
+	padding: 0 10px 0 0;
 }
 
 .b-edit {
@@ -459,16 +475,20 @@ ul li {
 .b-edit__ico {
 	width: 19px;
 	height: 19px;
-	display:inline-block;
-	_overflow:hidden;
-	*zoom:1;
-	*display:inline;
-	vertical-align: top;
+	display: none;
 	background: url(b-edit__ico.png) no-repeat;
 	margin: 2px 0 0 10px;
 	opacity: 0.3;
 	cursor: pointer;
 	right: -22px;
+}
+
+.b-edit:hover .b-edit__ico {
+	display:inline-block;
+	_overflow:hidden;
+	*zoom:1;
+	*display:inline;
+	vertical-align: middle;
 }
 
 .b-edit__ico:hover {

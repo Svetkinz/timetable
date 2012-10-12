@@ -408,7 +408,7 @@
     }
 
     function GetWeeksHtml() {
-        var html = '<div class="b-nav"><ul class="b-nav__list">';
+        var html = '<ul class="b-nav__list">';
         var weekIndex;
         for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
             var week = weeks[weekIndex];
@@ -438,18 +438,18 @@
             html += '</ul></div></li>';
 
         }
-        html += '</ul></div>';
+        html += '</ul>';
         return html;
     }
 	
 	function GetLectionsHtml(){
-		var html = '<div class="b-timetable">';
+		var html = '';
 		var weekIndex;
 		for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
 			var week = weeks[weekIndex];
 			var weekDescription = weeksDescriptions[weekIndex];
 				
-			html += '<h1>'+weekDescription.name+'</h1>';	
+			html += '<h1 class="b-timetable__weekname">'+weekDescription.name+'</h1>';	
 				
 			for (var metaIndex in weekDescription.meta) {					
 				html += '<span class="b-timetable__meta"> '+weekDescription.meta[metaIndex]+'</span>';
@@ -503,7 +503,6 @@
 			}
 			html += '</ul>';
 		}		
-		html += '</div>';
 		return html;
 	}
 	
@@ -538,64 +537,94 @@
 				
 		$(".b-lection").data('id', id);
 			
-		$(".b-popup__title").text(viewLection.name);
+		if(viewLection.name != '') {
+			$(".b-lection__name").text(viewLection.name);		
+		} else {
+			$(".b-lection__name").text("Название лекции");	
+		}
+				
+		
 		$(".b-lection__date").text(GetTextDate(dateLection, 'lectionDate')+", "+viewLection.time);
 			
 			
 		if(viewLection.video != '') {
 			$(".b-lection__link_type_video").attr({"href": viewLection.video, "style": "background-position: 0 0;"});		
+		} else {
+			$(".b-lection__link_type_video").removeAttr("href").removeAttr("style");	
 		}
 			
 		if(viewLection.ppt != '') {
 			$(".b-lection__link_type_ppt").attr({"href": viewLection.ppt, "style": "background-position: 0 0;"});		
+		} else {
+			$(".b-lection__link_type_ppt").removeAttr("href").removeAttr("style");	
 		}
 			
 		if(viewLection.github != '') {
 			$(".b-lection__link_type_github").attr({"href": viewLection.github, "style": "background-position: 0 0;"});		
+		} else {
+			$(".b-lection__link_type_github").removeAttr("href").removeAttr("style");	
 		}
 			
 		if(viewLection.club != '') {
 			$(".b-lection__link_type_club").attr({"href": viewLection.club, "style": "background-position: 0 0;"});		
+		} else {
+			$(".b-lection__link_type_club").removeAttr("href").removeAttr("style");	
 		}
 			
 		if(viewLection.task != '') {
 			$(".b-lection__link_type_task").attr("style", "background-position: 0 0;");	
 			$(".b-edit__task").text(viewLection.task);					
+		} else {
+			$(".b-lection__link_type_task").removeAttr("style");	
+			$(".b-edit__task").text("Задание");					
 		}
 			
 		if(viewLection.descr != '') {
 			$(".b-lection__link_type_descr").attr("style", "background-position: 0 0;");	
 			$(".b-edit__descr").text(viewLection.descr);					
+		} else {
+			$(".b-lection__link_type_descr").removeAttr("style");	
+			$(".b-edit__descr").text("Описание");					
 		}
 						
 		if(viewLection.lector != '') {
 			$(".b-edit__lectorname").text(lectors[viewLection.lector].name);
 			if(lectors[viewLection.lector].link != ''){
 				$(".b-lector__name").attr("href", lectors[viewLection.lector].link);		
+			} else {
+				$(".b-lector__name").removeAttr("href");
 			}
 			if(lectors[viewLection.lector].photo != ''){
 				$(".b-lector__img").attr("src", lectors[viewLection.lector].photo);		
+			} else {
+				$(".b-lector__img").attr("src", "pic1.jpg");
 			}
 		}			
 		$(".b-popup").show();
+		$(".b-week").removeAttr("style");
+		
 	}
 	
 
 	$('.b-open__lection').live("click",function(){
 		var id = $(this).data('id');		
-		GetLectionHtml(id);
+		GetLectionHtml(id);		
 	});
 
 	
 	
     var html = '';
+	html += '<div class="b-nav">';
     html += GetWeeksHtml();
+	html += '</div>';
+	html += '<div class="b-timetable">';
 	html += GetLectionsHtml();
+	html += '</div>';
 
 
 	
 	
-	html += '<div class="b-popup" style="display: none;"><i class="b-popup__close"></i><div class="b-lection" data-id="id"><div class="b-lection__descr"><h1 class="b-popup__title">Название</h1><span class="b-lection__date">Дата</span><ul><li class="b-lection__video"><div class="b-edit" data-type="video"><a href="#" class="b-icons__video b-lection__link b-lection__link_type_video"><span class="b-edit__label">Видео</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__ppt"><div class="b-edit" data-type="ppt"><a href="#" class="b-icons__ppt b-lection__link b-lection__link_type_ppt"><span class="b-edit__label">Презентация</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__github"><div class="b-edit" data-type="github"><a href="#" class="b-icons__github b-lection__link b-lection__link_type_github"><span class="b-edit__label">GitHUB</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__club"><div class="b-edit" data-type="club"><a href="#" class="b-icons__club b-lection__link b-lection__link_type_club"><span class="b-edit__label">Обсуждения в Клубе</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__task"><div class="b-edit" data-type="task"><a href="#" class="b-icons__task b-lection__link b-lection__link_type_task"><span class="b-edit__task">Задание</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__descr"><div class="b-edit" data-type="descr"><a href="#" class="b-icons__descr b-lection__link b-lection__link_type_descr"><span class="b-edit__descr">Описание</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li></ul></div><div class="b-lector"><img src="pic1.jpg" alt="" class="b-lector__img"/><div class="b-edit" data-type="lector"><a href="#" class="b-lector__name"><span class="b-edit__lectorname">Имя лектора</span></a><select size="3" class="b-edit__value" style="display: none;"></select><i class="b-edit__ico"></i></div></div></div></div>';
+	html += '<div class="b-popup" style="display: none;"><i class="b-popup__close"></i><div class="b-lection" data-id="id"><div class="b-lection__descr"><h1><div class="b-edit" data-type="name"><span class="b-lection__name">Название</span><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></h1><div class="b-edit" data-type="date"><span class="b-lection__date">Дата</span><select size="3" class="b-edit__value" style="display: none;"></select><i class="b-edit__ico"></i></div><ul><li class="b-lection__video"><div class="b-edit" data-type="video"><a href="#" class="b-icons__video b-lection__link b-lection__link_type_video"><span>Видео</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__ppt"><div class="b-edit" data-type="ppt"><a href="#" class="b-icons__ppt b-lection__link b-lection__link_type_ppt"><span>Презентация</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__github"><div class="b-edit" data-type="github"><a href="#" class="b-icons__github b-lection__link b-lection__link_type_github"><span>GitHUB</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__club"><div class="b-edit" data-type="club"><a href="#" class="b-icons__club b-lection__link b-lection__link_type_club"><span>Обсуждения в Клубе</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__task"><div class="b-edit" data-type="task"><a href="#" class="b-icons__task b-lection__link b-lection__link_type_task"><span class="b-edit__task">Задание</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li><li class="b-lection__descr"><div class="b-edit" data-type="descr"><a href="#" class="b-icons__descr b-lection__link b-lection__link_type_descr"><span class="b-edit__descr">Описание</span></a><input type="text" class="b-edit__value" style="display: none;" value="" /><i class="b-edit__ico"></i></div></li></ul></div><div class="b-lector"><img src="pic1.jpg" alt="" class="b-lector__img"/><div class="b-edit" data-type="lector"><a href="#" class="b-lector__name"><span class="b-edit__lectorname">Имя лектора</span></a><select size="3" class="b-edit__value" style="display: none;"></select><i class="b-edit__ico"></i></div></div></div></div>';
 	
 
 	
@@ -606,20 +635,62 @@
 		
 		$(".b-edit__ico").live("click", function(){ 
 			var lectionKey = $(this).closest(".b-edit").data("type");
-			var lectionId = $(this).closest(".b-lection").data("id");
-			if(lectionKey === 'lector') {
+			var id = $(this).closest(".b-lection").data("id");
+			if(lectionKey === 'date') {
 				$(this).prev(".b-edit__value").show();
-				for (var lectorIndex in lectors) {
-					var currentLector = lectors[lectorIndex];
-					$(".b-edit__value").append("<option value='"+lectorIndex+"'>"+currentLector.name+"</option>");
-					$(".b-edit__value [value='0']").attr("selected", "selected");
-					$("select").focus();					
+				
+				var dateLection;			
+				var weekIndex;
+				for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
+					var week = weeks[weekIndex];
+					var day; 
+					for (day in week) {
+						if (!week.hasOwnProperty(day)) {
+						continue;
+						}
+						var lectionIndex;
+						var dayLections = week[day];
+						for(lectionIndex in dayLections) {
+							if (!dayLections.hasOwnProperty(lectionIndex)) {
+								continue;
+							}
+							if(parseInt(dayLections[lectionIndex]) === parseInt(id)) {									
+								dateLection = day;
+								break;
+							}
+						}
+					}
 				}
+				$(".b-edit__value").html("");
+				for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
+					var week = weeks[weekIndex];
+					var day; 
+					for (day in week) {				
+						$(".b-edit__value").append("<option value='"+day+"'>"+day+"</option>");
+						
+					}					
+				}
+				$(".b-edit__value [value='"+dateLection+"']").attr("selected", "selected");
+				$("select").focus();
+				$(this).prevAll("span").attr("style","display: none;");					
+			} else if(lectionKey === 'lector') {
+				$(this).prev(".b-edit__value").show();
+				$(".b-edit__value").html("");
+				var lectionLector = lections[id].lector;
+				for (var lectorIndex in lectors) {
+					var currentLector = lectors[lectorIndex];					
+					$(".b-edit__value").append("<option value='"+lectorIndex+"'>"+currentLector.name+"</option>");									
+				}
+				$(".b-edit__value [value='"+lectionLector+"']").attr("selected", "selected");
+				$("select").focus();	
 				$(this).prevAll("a").find("span").attr("style","display: none;");	
+			} else if(lectionKey === 'name') {
+				$(this).prev(".b-edit__value").attr("value", lections[id][lectionKey]).show();				
+				$(this).prevAll(".b-lection__name").attr("style","display: none;");	
+				$("input").focus();
 			}
 			else {
-                console.log(lectionId);
-				$(this).prev(".b-edit__value").attr("value", lections[lectionId][lectionKey]).show();			
+				$(this).prev(".b-edit__value").attr("value", lections[id][lectionKey]).show();			
 				$(this).prevAll("a").find("span").attr("style","display: none;");					
 				$("input").focus();
 			}
@@ -629,28 +700,100 @@
 		});
 		
 		$(".b-edit__value").live("focusout", function() {
-			var id = $(this).closest(".b-lection").data("id");
 			var value = $(this).val();
 			var lectionKey = $(this).closest('.b-edit').data('type');
-			var lectionIndex = $(this).closest('.b-lection').data('id');
+			var id = $(this).closest('.b-lection').data('id');
+			var currentLection = lections[id];
 			
-			lections[lectionIndex][lectionKey] = value;
+			var dateLection;			
+				var weekIndex;
+				for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
+					var week = weeks[weekIndex];
+					var day; 
+					for (day in week) {
+						if (!week.hasOwnProperty(day)) {
+						continue;
+						}
+						var lectionIndex;
+						var dayLections = week[day];
+						for(lectionIndex in dayLections) {
+							if (!dayLections.hasOwnProperty(lectionIndex)) {
+								continue;
+							}
+							if(parseInt(dayLections[lectionIndex]) === parseInt(id)) {									
+								dateLection = day;
+								break;
+							}
+						}
+					}
+				}
+
+			if(lectionKey === 'date') {
+				if(value != dateLection) {
+					
+					var weekIndex;
+					for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
+						var week = weeks[weekIndex];
+						var day; 
+						for (day in week) {
+							if (!week.hasOwnProperty(day)) {
+							continue;
+							}
+							if(day === dateLection) {								
+								var dayLections = week[day];
+								for(var lectionIndex in dayLections) {
+									if (parseInt(dayLections[lectionIndex]) === parseInt(id)) {								
+										dayLections.splice(lectionIndex,1); 						
+									}
+								}
+							}
+							if(day === value) {								
+								var dayLections = week[day];
+								dayLections.push(id);
+							}
+						}
+					}
+					
+				}
+			}else { 
+				if(lectionKey === 'lector') {				
+					if(lectors[currentLection.lector].link != ''){
+						$(".b-lector__name").attr("href", lectors[currentLection.lector].link);		
+					} else {
+						$(".b-lector__name").removeAttr("href");
+					}
+					if(lectors[currentLection.lector].photo != ''){
+						$(".b-lector__img").attr("src", lectors[currentLection.lector].photo);		
+					} else {
+						$(".b-lector__img").attr("src", "pic1.jpg");
+					}				
+				}
+			
+				lections[id][lectionKey] = value;			
+			}
 			localStorage.lections = JSON.stringify(lections, "", 4); 
 			lections = JSON.parse(localStorage.lections);
 			$(this).hide();
+			
 			if(lectionKey === 'lector') {
-				$(".b-edit__lectorname").show();			
+				$(".b-edit__lectorname").show();								
+			} else if(lectionKey === 'name') {
+				$(this).prev(".b-lection__name").show();
 			}
 			else {
-				$(this).prev(".b-lection__link").find("span").show();
+				$(this).prevAll(".b-lection__link").find("span").show();
 			}
 			$(this).next(".b-edit__ico").show();
 			GetLectionHtml(id);
+			$(".b-timetable").html(GetLectionsHtml());
+			$(".b-nav").html(GetWeeksHtml());
 		});
 			
 			
 		$(".b-popup__close").live("click", function(){ 
-			 $(".b-popup").hide();
+			$(".b-popup").hide();
+			$(".b-timetable").html(GetLectionsHtml());
+			$(".b-nav").html(GetWeeksHtml());
 		});
 	});
 	
