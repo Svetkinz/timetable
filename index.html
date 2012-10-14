@@ -13,7 +13,6 @@
 
 <script src="js/date-ru-RU.js"></script>
 
-
 <link rel="stylesheet" type="text/css" href="style.css" />
 <link rel="stylesheet" type="text/css" media="print" href="print.css" />
 
@@ -22,12 +21,16 @@
 	var months = ['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
 	var weekDays = ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'];
 	var weekDaysShrt = ['вс','пн','вт','ср','чт','пт','сб'];
-
-	var lectors = [
+ 	
+		var storageLength = localStorage.length;
+	
+		if(storageLength === 0) {
+		
+		var lectors = [
 		{
 		"name" : "Михаил Трошев",
 		"photo" : "http://img-fotki.yandex.ru/get/6610/16051756.0/0_a5ee8_af749073_L",
-		"link" : "http://clubs.ya.ru/4611686018427468886/replies.xml?item_no=77",
+		"link" : "http://clubs.ya.ru/4611686018427468886/replies.xml?item_no=77"
 		},
 		{
 		"name" : "Сергей Бережной",
@@ -141,7 +144,7 @@
 		[	
 			{
 				"time" : "12:00",
-				"name" : "Общий цикл разработки",
+				"name" : "Общий цикл",
 				"lector" : "0",
 				"video" : "http://yadi.sk/d/Lr0Y4WO606jTc",
 				"ppt" : "http://yadi.sk/d/VDsJ4ZUBiq6u",
@@ -368,8 +371,9 @@
 	]
 		
 	localStorage.weeks = JSON.stringify(weeks, "", 4);
-
-    var lections = JSON.parse(localStorage.lections);
+	}
+    
+	var lections = JSON.parse(localStorage.lections);
     var weeks = JSON.parse(localStorage.weeks);
     var lectors = JSON.parse(localStorage.lectors);
     var weeksDescriptions = JSON.parse(localStorage.weeksDescriptions);
@@ -613,14 +617,16 @@
 
 	
 	
-    var html = '';
+    	
+	
+	var html = '';
 	html += '<div class="b-nav">';
     html += GetWeeksHtml();
 	html += '</div>';
+	html += '<div class="b-update"><div class="b-update__link"><a href="#" class="b-update__enter b-update__btn">Обновить расписание</a></div><div class="b-update__block"><textarea name="b-update__value" class="b-update__text"></textarea><br /><a href="#" class="b-update__close">Закрыть</a><a href="#" class="b-update__clear">Очистить</a><a href="#" class="b-update__send b-update__btn">Отправить</a></div></div>';
 	html += '<div class="b-timetable">';
 	html += GetLectionsHtml();
 	html += '</div>';
-
 
 	
 	
@@ -795,9 +801,48 @@
 			$(".b-timetable").html(GetLectionsHtml());
 			$(".b-nav").html(GetWeeksHtml());
 		});
+		
+		
+		$(".b-update__enter").live("click", function() {
+			$(this).hide();
+			$(".b-update__block").show();
+			$(".b-update__text").val('');			
+			$(".b-update__text").focus();
+		
+		});
+		
+		$(".b-update__close").live("click", function() {
+			$(".b-update__block").hide();
+			$(".b-update__enter").show();
+		});
+		
+		$(".b-update__clear").click(function(){
+			$(".b-update__text").val('');
+			
+		});
+		
+		$(".b-update__send").click(function(){
+			localStorage.clear(); 	
+			var timetable = JSON.parse($(".b-update__text").val());
+			localStorage.lectors = JSON.stringify(timetable.lectors, "", 4);
+			localStorage.lections = JSON.stringify(timetable.lections, "", 4);
+			localStorage.weeks = JSON.stringify(timetable.weeks, "", 4);
+			localStorage.weeksDescriptions = JSON.stringify(timetable.weeksDescriptions, "", 4);
+			
+			$(".b-update__block").hide();
+			$(".b-update__enter").show();
+			$(".b-nav").html(GetWeeksHtml());
+			$(".b-timetable").html(GetLectionsHtml());
+		});
+		
 	});
 	
 
+
+	
+	
+	
+	
 	
 </script>
 
@@ -811,7 +856,7 @@
 
  
 
- <!--
+<!--
 
 <div class="b-nav">
 	<ul class="b-nav__list">
@@ -832,7 +877,11 @@
 		<li class="b-nav__item b-nav__item_pos_last"><a href="#" class="b-nav__link">4 неделя</a></li>
 	</ul>
 </div>
-
+<div class="b-update">
+	<a href="#" class="b-update__enter b-update__link">Обновить расписание</a>
+	<textarea name="b-update__value" class="b-update__text"></textarea>
+	<a href="#" class="b-update__send b-update__link">Отправить</a>	
+</div>
 <div class="b-timetable">
 	<h1>1 неделя</h1> <span class="b-timetable__meta">инструменты</span> <span class="b-timetable__meta">технологии</span>
 	<div class="b-popup">			
@@ -933,8 +982,8 @@
 			<span class="b-lections__meta">факультативно</span>
 		</li>
 	</ul>
-</div>-->
-
+</div>
+-->
 <script>
 
 </script>
