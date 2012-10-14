@@ -368,7 +368,7 @@
 		"25.09.2012" : [13, 14],
 		"27.09.2012" : [15, 16]
 		}
-	]
+	];
 		
 	localStorage.weeks = JSON.stringify(weeks, "", 4);
 	}
@@ -635,24 +635,15 @@
 
 	
 	
-	$(document).ready(function(){
-		$('body').html(html);	
-		
-		
-		$(".b-edit__ico").live("click", function(){ 
-			var lectionKey = $(this).closest(".b-edit").data("type");
-			var id = $(this).closest(".b-lection").data("id");
-			if(lectionKey === 'date') {
-				$(this).prev(".b-edit__value").show();
-				
-				var dateLection;			
+	var GetDayLection = function (id) {
+		var dayLection;			
 				var weekIndex;
-				for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
+				for (var weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
 					var week = weeks[weekIndex];
 					var day; 
-					for (day in week) {
+					for (var day in week) {
 						if (!week.hasOwnProperty(day)) {
-						continue;
+							continue;
 						}
 						var lectionIndex;
 						var dayLections = week[day];
@@ -661,12 +652,29 @@
 								continue;
 							}
 							if(parseInt(dayLections[lectionIndex]) === parseInt(id)) {									
-								dateLection = day;
+								dayLection = day;
 								break;
 							}
 						}
 					}
 				}
+		return dayLection;
+    }
+
+	
+	
+	
+	
+	$(document).ready(function(){
+		$('body').html(html);			
+		
+		$(".b-edit__ico").live("click", function(){ 
+			var lectionKey = $(this).closest(".b-edit").data("type");
+			var id = $(this).closest(".b-lection").data("id");
+			if(lectionKey === 'date') {
+				$(this).prev(".b-edit__value").show();
+				
+				
 				$(".b-edit__value").html("");
 				for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
 					var week = weeks[weekIndex];
@@ -676,7 +684,8 @@
 						
 					}					
 				}
-				$(".b-edit__value [value='"+dateLection+"']").attr("selected", "selected");
+				var dayLection = GetDayLection(id);
+				$(".b-edit__value [value='"+dayLection+"']").attr("selected", "selected");
 				$("select").focus();
 				$(this).prevAll("span").attr("style","display: none;");					
 			} else if(lectionKey === 'lector') {
@@ -711,31 +720,10 @@
 			var id = $(this).closest('.b-lection').data('id');
 			var currentLection = lections[id];
 			
-			var dateLection;			
-				var weekIndex;
-				for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
-					var week = weeks[weekIndex];
-					var day; 
-					for (day in week) {
-						if (!week.hasOwnProperty(day)) {
-						continue;
-						}
-						var lectionIndex;
-						var dayLections = week[day];
-						for(lectionIndex in dayLections) {
-							if (!dayLections.hasOwnProperty(lectionIndex)) {
-								continue;
-							}
-							if(parseInt(dayLections[lectionIndex]) === parseInt(id)) {									
-								dateLection = day;
-								break;
-							}
-						}
-					}
-				}
 
+			var dayLection = GetDayLection(id);
 			if(lectionKey === 'date') {
-				if(value != dateLection) {
+				if(value != dayLection) {
 					
 					var weekIndex;
 					for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
@@ -745,7 +733,7 @@
 							if (!week.hasOwnProperty(day)) {
 							continue;
 							}
-							if(day === dateLection) {								
+							if(day === dayLection) {								
 								var dayLections = week[day];
 								for(var lectionIndex in dayLections) {
 									if (parseInt(dayLections[lectionIndex]) === parseInt(id)) {								
