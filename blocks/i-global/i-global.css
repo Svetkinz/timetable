@@ -20,5 +20,25 @@ body
 
 a:hover
 {
-    text-decoration: underline;
+    text-decoration: none;
+}
+
+h3 {
+    font-weight: normal;
+    color: #B0B3B5;
+}
+
+h1 {
+    color: #3FA9F5;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 15px 0 0;
+}
+
+ul {
+    margin: 15px 0;
+}
+
+ul li {
+    margin: 0 0 8px 0;
 }

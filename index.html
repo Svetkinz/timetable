@@ -22,126 +22,124 @@
 	var weekDays = ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'];
 	var weekDaysShrt = ['вс','пн','вт','ср','чт','пт','сб'];
  	
-		var storageLength = localStorage.length;
+	var storageLength = localStorage.length;
 	
-		if(storageLength === 0) {
-		
+	if(storageLength === 0) {
 		var lectors = [
-		{
-		"name" : "Михаил Трошев",
-		"photo" : "http://img-fotki.yandex.ru/get/6610/16051756.0/0_a5ee8_af749073_L",
-		"link" : "http://clubs.ya.ru/4611686018427468886/replies.xml?item_no=77"
-		},
-		{
-		"name" : "Сергей Бережной",
-		"photo" : "http://img-fotki.yandex.ru/get/6413/16051756.0/0_a5ee9_e1a181e7_M",
-		"link" : "http://clubs.ya.ru/4611686018427468886/replies.xml?item_no=89"
-		},
-		{
-		"name" : "Виктор Ашик",
-		"photo" : "http://avatars.yandex.net/get-avatar/103345/1194908534023-normal",
-		"link" : "http://vashik.ya.ru/"
-		},
-		{
-		"name" : "Вячеслав Олиянчук",
-		"photo" : "http://img-fotki.yandex.ru/get/5605/miripiruni.0/0_727f7_90d798f3_L",
-		"link" : "http://miripiruni.ya.ru/"
-		},
-		{
-		"name" : "Георгий Мостоловица",
-		"photo" : "http://img-fotki.yandex.ru/get/4003/gfranco.3/0_33d7f_fbc9803e_M",
-		"link" : "http://gfranco.ya.ru/"
-		},
-		{
-		"name" : "Сергей Сергеев",
-		"photo" : "http://img-fotki.yandex.ru/get/6305/24969369.17/0_7f71f_571f11b4_M?log_nocount=64720402854",
-		"link" : "http://gurugray.ya.ru/"
-		},
-		{
-		"name" : "Марина Широчкина",
-		"photo" : "http://moikrug.ru/img/3410/person_BigRound/195533509.jpg?modified=1349661754",
-		"link" : "http://pancakyes.ya.ru/"
-		},
-		{
-		"name" : "Павел Пушкарев",
-		"photo" : "http://moikrug.ru/img/3011/person_Portrait/562433474.jpg?modified=1348684201",
-		"link" : "http://paulus.moikrug.ru/"
-		},
-		{
-		"name" : "Алексей Бережной",
-		"photo" : "http://moikrug.ru/img/3912/person_Portrait/859747808.jpg?modified=1328695610",
-		"link" : "http://berezhnoy-aleksey.moikrug.ru/"
-		},
-		{
-		"name" : "Сергей Пузанков",
-		"photo" : "http://moikrug.ru/img/3409/person_Portrait/212902874.jpg?modified=1308231025",
-		"link" : "http://sergeypuzankov.moikrug.ru/"
-		},
-		{
-		"name" : "Роман Комаров",
-		"photo" : "http://avatars.yandex.net/get-avatar/1076905/2d6a0b2c6065e51eb2dc67eabac03357.6501-normal",
-		"link" : "http://kizmarh.ya.ru/"
-		},
-		{
-		"name" : "Егор Львовский",
-		"photo" : "http://moikrug.ru/img/6604/person_Portrait/668323964.jpg?modified=1346584974",
-		"link" : "http://lvivski.ya.ru/"
-		},
-		{
-		"name" : "Тарас Иващенко",
-		"photo" : "",
-		"link" : ""
-		},
-		{
-		"name" : "Алексей Воинов",
-		"photo" : "",
-		"link" : ""
-		},
-		{
-		"name" : "Михаил Давыдов",
-		"photo" : "",
-		"link" : ""
-		},
-		{
-		"name" : "Алексей Андросов",
-		"photo" : "",
-		"link" : ""
-		},
-		{
-		"name" : "Иван Карев",
-		"photo" : "",
-		"link" : ""
-		},
-		{
-		"name" : "Михаил Корепанов",
-		"photo" : "",
-		"link" : ""
-		},
-		{
-		"name" : "Максим Ширшин",
-		"photo" : "",
-		"link" : ""
-		},
-		{
-		"name" : "Михаил Трошев",
-		"photo" : "",
-		"link" : ""
-		},
-		{
-		"name" : "Владимир Варанкин",
-		"photo" : "",
-		"link" : ""
-		},
-		{
-		"name" : "Константин Горский",
-		"photo" : "",
-		"link" : ""
-		}		
-	];
-	localStorage.lectors = JSON.stringify(lectors, "", 4); 
+            {
+            "name" : "Михаил Трошев",
+            "photo" : "http://img-fotki.yandex.ru/get/6610/16051756.0/0_a5ee8_af749073_L",
+            "link" : "http://clubs.ya.ru/4611686018427468886/replies.xml?item_no=77"
+            },
+            {
+            "name" : "Сергей Бережной",
+            "photo" : "http://img-fotki.yandex.ru/get/6413/16051756.0/0_a5ee9_e1a181e7_M",
+            "link" : "http://clubs.ya.ru/4611686018427468886/replies.xml?item_no=89"
+            },
+            {
+            "name" : "Виктор Ашик",
+            "photo" : "http://avatars.yandex.net/get-avatar/103345/1194908534023-normal",
+            "link" : "http://vashik.ya.ru/"
+            },
+            {
+            "name" : "Вячеслав Олиянчук",
+            "photo" : "http://img-fotki.yandex.ru/get/5605/miripiruni.0/0_727f7_90d798f3_L",
+            "link" : "http://miripiruni.ya.ru/"
+            },
+            {
+            "name" : "Георгий Мостоловица",
+            "photo" : "http://img-fotki.yandex.ru/get/4003/gfranco.3/0_33d7f_fbc9803e_M",
+            "link" : "http://gfranco.ya.ru/"
+            },
+            {
+            "name" : "Сергей Сергеев",
+            "photo" : "http://img-fotki.yandex.ru/get/6305/24969369.17/0_7f71f_571f11b4_M?log_nocount=64720402854",
+            "link" : "http://gurugray.ya.ru/"
+            },
+            {
+            "name" : "Марина Широчкина",
+            "photo" : "http://moikrug.ru/img/3410/person_BigRound/195533509.jpg?modified=1349661754",
+            "link" : "http://pancakyes.ya.ru/"
+            },
+            {
+            "name" : "Павел Пушкарев",
+            "photo" : "http://moikrug.ru/img/3011/person_Portrait/562433474.jpg?modified=1348684201",
+            "link" : "http://paulus.moikrug.ru/"
+            },
+            {
+            "name" : "Алексей Бережной",
+            "photo" : "http://moikrug.ru/img/3912/person_Portrait/859747808.jpg?modified=1328695610",
+            "link" : "http://berezhnoy-aleksey.moikrug.ru/"
+            },
+            {
+            "name" : "Сергей Пузанков",
+            "photo" : "http://moikrug.ru/img/3409/person_Portrait/212902874.jpg?modified=1308231025",
+            "link" : "http://sergeypuzankov.moikrug.ru/"
+            },
+            {
+            "name" : "Роман Комаров",
+            "photo" : "http://avatars.yandex.net/get-avatar/1076905/2d6a0b2c6065e51eb2dc67eabac03357.6501-normal",
+            "link" : "http://kizmarh.ya.ru/"
+            },
+            {
+            "name" : "Егор Львовский",
+            "photo" : "http://moikrug.ru/img/6604/person_Portrait/668323964.jpg?modified=1346584974",
+            "link" : "http://lvivski.ya.ru/"
+            },
+            {
+            "name" : "Тарас Иващенко",
+            "photo" : "",
+            "link" : ""
+            },
+            {
+            "name" : "Алексей Воинов",
+            "photo" : "",
+            "link" : ""
+            },
+            {
+            "name" : "Михаил Давыдов",
+            "photo" : "",
+            "link" : ""
+            },
+            {
+            "name" : "Алексей Андросов",
+            "photo" : "",
+            "link" : ""
+            },
+            {
+            "name" : "Иван Карев",
+            "photo" : "",
+            "link" : ""
+            },
+            {
+            "name" : "Михаил Корепанов",
+            "photo" : "",
+            "link" : ""
+            },
+            {
+            "name" : "Максим Ширшин",
+            "photo" : "",
+            "link" : ""
+            },
+            {
+            "name" : "Михаил Трошев",
+            "photo" : "",
+            "link" : ""
+            },
+            {
+            "name" : "Владимир Варанкин",
+            "photo" : "",
+            "link" : ""
+            },
+            {
+            "name" : "Константин Горский",
+            "photo" : "",
+            "link" : ""
+            }
+	    ];
+	    localStorage.lectors = JSON.stringify(lectors);
 
-	var lections = 
-		[	
+	    var lections = [
 			{
 				"time" : "12:00",
 				"name" : "Общий цикл",
@@ -328,50 +326,50 @@
 				"github" : "",
 				"club" : "http://clubs.ya.ru/4611686018427468886/replies.xml?item_no=549",
 				"descr" : ""
-			}			
-		];		
-		
-	localStorage.lections = JSON.stringify(lections, "", 4); 
+			}
+		];
 
-	var weeksDescriptions = [
-        {
-            "name" : "Открытие",
-            "meta" : ["техологии", "инструменты"]
-		},
-        {
-            "name" : "1 неделя",
-            "meta" : ["инстурменты", "инструменты"]
-        },
-        {
-            "name" : "2 неделя",
-            "meta" : ["инстурменты", "инструменты"]
-        },
-        {
-            "name" : "3 неделя",
-            "meta" : ["инстурменты", "инструменты"]
-        }
-    ];
-	
-	localStorage.weeksDescriptions = JSON.stringify(weeksDescriptions, "", 4);
-	
-	var weeks = [
-		{
-		"15.09.2012" : [0, 1, 2]
-		},
-		{
-		"18.09.2012" : [3, 4],
-		"20.09.2012" : [5, 6],
-		"22.09.2012" : [7, 8, 9]
-		},
-		{
-		"24.09.2012" : [10, 11, 12],
-		"25.09.2012" : [13, 14],
-		"27.09.2012" : [15, 16]
-		}
-	];
-		
-	localStorage.weeks = JSON.stringify(weeks, "", 4);
-	}
+	    localStorage.lections = JSON.stringify(lections);
+
+        var weeksDescriptions = [
+                {
+                    "name" : "Открытие",
+                    "meta" : ["техологии", "инструменты"]
+                },
+                {
+                    "name" : "1 неделя",
+                    "meta" : ["инстурменты", "инструменты"]
+                },
+                {
+                    "name" : "2 неделя",
+                    "meta" : ["инстурменты", "инструменты"]
+                },
+                {
+                    "name" : "3 неделя",
+                    "meta" : ["инстурменты", "инструменты"]
+                }
+        ];
+
+	    localStorage.weeksDescriptions = JSON.stringify(weeksDescriptions);
+
+	    var weeks = [
+            {
+            "15.09.2012" : [0, 1, 2]
+            },
+            {
+            "18.09.2012" : [3, 4],
+            "20.09.2012" : [5, 6],
+            "22.09.2012" : [7, 8, 9]
+            },
+            {
+            "24.09.2012" : [10, 11, 12],
+            "25.09.2012" : [13, 14],
+            "27.09.2012" : [15, 16]
+            }
+	    ];
+
+	    localStorage.weeks = JSON.stringify(weeks);
+    }
     
 	var lections = JSON.parse(localStorage.lections);
     var weeks = JSON.parse(localStorage.weeks);
@@ -380,7 +378,6 @@
 
     var GetTextDate = function (day, format) {
         var date = Date.parse(day);
-
         switch (format) {
             case "weeksDate":
                 var dayNumber = date.getDate();
@@ -405,7 +402,6 @@
                 }
                 var dayWeekText = weekDays[date.getDay()];
                 return dayNumber+'.'+monthNumber+' '+dayWeekText;
-			
         }
 
         return '';
@@ -413,8 +409,7 @@
 
     function GetWeeksHtml() {
         var html = '<ul class="b-nav__list">';
-        var weekIndex;
-        for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
+        for (var weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
             var week = weeks[weekIndex];
             var weekDescription = weeksDescriptions[weekIndex];
 
@@ -427,9 +422,8 @@
                     continue;
                 }
 
-                var lectionIndex;
                 var dayLections = week[day];
-                for(lectionIndex in dayLections) {
+                for(var lectionIndex in dayLections) {
                     if (!dayLections.hasOwnProperty(lectionIndex)) {
                         continue;
                     }
@@ -440,7 +434,6 @@
                 }
             }
             html += '</ul></div></li>';
-
         }
         html += '</ul>';
         return html;
@@ -448,8 +441,7 @@
 	
 	function GetLectionsHtml(){
 		var html = '';
-		var weekIndex;
-		for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
+		for (var weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
 			var week = weeks[weekIndex];
 			var weekDescription = weeksDescriptions[weekIndex];
 				
@@ -461,8 +453,7 @@
 				
 			html += '<ul class="b-lections">';
 			
-			var day;
-			for (day in week) {
+			for (var day in week) {
 				if (!week.hasOwnProperty(day)) {
 					continue;
 				}
@@ -470,9 +461,8 @@
 				html += '<li class="b-lections__day">';
 				html += '<div class="b-lections-date">'+GetTextDate(day, 'lectionsDate')+'</div><span class="b-lections__meta"></span>';
 				
-				var lectionIndex;
 				var dayLections = week[day];
-				for(lectionIndex in dayLections) {
+				for(var lectionIndex in dayLections) {
 					if (!dayLections.hasOwnProperty(lectionIndex)) {
 						continue;
 					}
@@ -511,27 +501,22 @@
 	}
 	
 	function GetLectionHtml(id) {
-				
 		var viewLection = lections[id];
-			
 		var dateLection;
-			
-		var weekIndex;
-		for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
+
+		for (var weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
 			var week = weeks[weekIndex];
-			var day; 
-			for (day in week) {
+
+			for (var day in week) {
 				if (!week.hasOwnProperty(day)) {
 				continue;
 				}
-				var lectionIndex;
 				var dayLections = week[day];
-				for(lectionIndex in dayLections) {
+				for(var lectionIndex in dayLections) {
 					if (!dayLections.hasOwnProperty(lectionIndex)) {
 						continue;
 					}
 					if(parseInt(dayLections[lectionIndex]) === parseInt(id)) {
-							
 						dateLection = day;
 						break;
 					}
@@ -610,9 +595,10 @@
 	}
 	
 
-	$('.b-open__lection').live("click",function(){
+	$('.b-open__lection').live('click',function(){
 		var id = $(this).data('id');		
 		GetLectionHtml(id);		
+		$(".b-week").hide();
 	});
 
 	
@@ -637,53 +623,47 @@
 	
 	var GetDayLection = function (id) {
 		var dayLection;			
-				var weekIndex;
-				for (var weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
-					var week = weeks[weekIndex];
-					var day; 
-					for (var day in week) {
-						if (!week.hasOwnProperty(day)) {
+			for (var weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
+				var week = weeks[weekIndex];
+				for (var day in week) {
+					if (!week.hasOwnProperty(day)) {
+						continue;
+					}
+					var dayLections = week[day];
+					for(var lectionIndex in dayLections) {
+						if (!dayLections.hasOwnProperty(lectionIndex)) {
 							continue;
 						}
-						var lectionIndex;
-						var dayLections = week[day];
-						for(lectionIndex in dayLections) {
-							if (!dayLections.hasOwnProperty(lectionIndex)) {
-								continue;
-							}
-							if(parseInt(dayLections[lectionIndex]) === parseInt(id)) {									
-								dayLection = day;
-								break;
-							}
+						if(parseInt(dayLections[lectionIndex]) === parseInt(id)) {
+							dayLection = day;
+							break;
 						}
 					}
 				}
+			}
 		return dayLection;
     }
 
-	
-	
-	
+
 	
 	$(document).ready(function(){
 		$('body').html(html);			
 		
-		$(".b-edit__ico").live("click", function(){ 
+		$(".b-edit__ico").live('click', function(){
 			var lectionKey = $(this).closest(".b-edit").data("type");
 			var id = $(this).closest(".b-lection").data("id");
 			if(lectionKey === 'date') {
 				$(this).prev(".b-edit__value").show();
 				
-				
 				$(".b-edit__value").html("");
-				for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
+				for (var weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
 					var week = weeks[weekIndex];
-					var day; 
-					for (day in week) {				
+					for (var day in week) {
 						$(".b-edit__value").append("<option value='"+day+"'>"+day+"</option>");
 						
 					}					
 				}
+
 				var dayLection = GetDayLection(id);
 				$(".b-edit__value [value='"+dayLection+"']").attr("selected", "selected");
 				$("select").focus();
@@ -711,7 +691,6 @@
 			}
 			$(this).hide();
 			
-			
 		});
 		
 		$(".b-edit__value").live("focusout", function() {
@@ -719,19 +698,15 @@
 			var lectionKey = $(this).closest('.b-edit').data('type');
 			var id = $(this).closest('.b-lection').data('id');
 			var currentLection = lections[id];
-			
 
 			var dayLection = GetDayLection(id);
 			if(lectionKey === 'date') {
 				if(value != dayLection) {
-					
-					var weekIndex;
-					for (weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
+					for (var weekIndex = 0; weekIndex < weeks.length; ++weekIndex) {
 						var week = weeks[weekIndex];
-						var day; 
-						for (day in week) {
+						for (var day in week) {
 							if (!week.hasOwnProperty(day)) {
-							continue;
+							    continue;
 							}
 							if(day === dayLection) {								
 								var dayLections = week[day];
@@ -747,9 +722,8 @@
 							}
 						}
 					}
-					
 				}
-			}else { 
+			} else {
 				if(lectionKey === 'lector') {				
 					if(lectors[currentLection.lector].link != ''){
 						$(".b-lector__name").attr("href", lectors[currentLection.lector].link);		
@@ -762,10 +736,9 @@
 						$(".b-lector__img").attr("src", "pic1.jpg");
 					}				
 				}
-			
 				lections[id][lectionKey] = value;			
 			}
-			localStorage.lections = JSON.stringify(lections, "", 4); 
+			localStorage.lections = JSON.stringify(lections);
 			lections = JSON.parse(localStorage.lections);
 			$(this).hide();
 			
@@ -783,40 +756,39 @@
 			$(".b-nav").html(GetWeeksHtml());
 		});
 			
-			
 		$(".b-popup__close").live("click", function(){ 
 			$(".b-popup").hide();
 			$(".b-timetable").html(GetLectionsHtml());
 			$(".b-nav").html(GetWeeksHtml());
 		});
-		
-		
+
 		$(".b-update__enter").live("click", function() {
 			$(this).hide();
 			$(".b-update__block").show();
 			$(".b-update__text").val('');			
 			$(".b-update__text").focus();
-		
 		});
 		
-		$(".b-update__close").live("click", function() {
+		$(".b-update__close").live('click', function() {
 			$(".b-update__block").hide();
 			$(".b-update__enter").show();
 		});
 		
-		$(".b-update__clear").click(function(){
+		$(".b-update__clear").live('click',function(){
 			$(".b-update__text").val('');
-			
 		});
 		
-		$(".b-update__send").click(function(){
+		$(".b-update__send").live('click',function(){
 			localStorage.clear(); 	
 			var timetable = JSON.parse($(".b-update__text").val());
-			localStorage.lectors = JSON.stringify(timetable.lectors, "", 4);
-			localStorage.lections = JSON.stringify(timetable.lections, "", 4);
-			localStorage.weeks = JSON.stringify(timetable.weeks, "", 4);
-			localStorage.weeksDescriptions = JSON.stringify(timetable.weeksDescriptions, "", 4);
-			
+			localStorage.lectors = JSON.stringify(timetable.lectors);
+			localStorage.lections = JSON.stringify(timetable.lections);
+			localStorage.weeks = JSON.stringify(timetable.weeks);
+			localStorage.weeksDescriptions = JSON.stringify(timetable.weeksDescriptions);
+			lections = JSON.parse(localStorage.lections);
+			weeks = JSON.parse(localStorage.weeks);
+			lectors = JSON.parse(localStorage.lectors);
+			weeksDescriptions = JSON.parse(localStorage.weeksDescriptions);
 			$(".b-update__block").hide();
 			$(".b-update__enter").show();
 			$(".b-nav").html(GetWeeksHtml());
@@ -824,13 +796,6 @@
 		});
 		
 	});
-	
-
-
-	
-	
-	
-	
 	
 </script>
 
@@ -972,9 +937,6 @@
 	</ul>
 </div>
 -->
-<script>
-
-</script>
 
 </body>
 </html>
